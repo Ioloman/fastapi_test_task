@@ -7,12 +7,17 @@ class Params(BaseModel):
     param_2: int
 
 
-class Task(BaseModel):
+class TaskBase(BaseModel):
+    description: str
+    params: Params
+
+
+class TaskCreate(TaskBase):
+    pass
+
+
+class Task(TaskBase):
     task_uuid: UUID
-    description: str
-    params: Params
 
-
-class TaskIn(BaseModel):
-    description: str
-    params: Params
+    class Config:
+        orm_mode = True

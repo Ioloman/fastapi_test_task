@@ -19,7 +19,7 @@ depends_on = None
 
 def upgrade():
     op.create_table(
-        'task',
+        'tasks',
         sa.Column('task_uuid', UUID(as_uuid=True), primary_key=True),
         sa.Column('description', sa.String, nullable=False),
         sa.Column('params', sa.JSON, nullable=False),
@@ -27,4 +27,4 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_table('task')
+    op.drop_table('tasks')

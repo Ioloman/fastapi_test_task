@@ -6,14 +6,14 @@ DATABASE_URL = 'postgresql://kkkk:1234@localhost/task'
 
 engine = create_engine(DATABASE_URL)
 
-Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base
+Base = declarative_base()
 
 
 def get_db():
-    db = Session()
+    db = SessionLocal()
     try:
         yield db
-    except:
+    finally:
         db.close()
